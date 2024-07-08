@@ -15,7 +15,7 @@ class TestDime():
     @pytest.fixture()
     def dime(self):
         return Dime()
-    def test_dime_vaule_is_10_cents(self, dime: Dime):
+    def test_dime_value_is_10_cents(self, dime: Dime):
         assert pytest.approx(0.10) == dime.value()
 
     def test_dime_name_is_dime(self, dime:Coin):

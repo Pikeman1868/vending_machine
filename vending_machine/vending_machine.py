@@ -1,4 +1,6 @@
 from . coins import Coin, Coins, Penny
+from . controller import Controller, CentralController 
+from . payment import CoinPaymentService
 
 class VendingMachine():
     INSTER_COIN_STRING:str = "Insert Coin"
@@ -7,6 +9,8 @@ class VendingMachine():
         self._display_format:str = "${:.2f}"
         self._display_string:str = self.INSTER_COIN_STRING
         self._coin_return: Coins = Coins()
+        self._controller: Controller = CentralController()
+        self._payment = CoinPaymentService(self._controller)
 
     def read_display(self) -> str:
         return self._display_string
@@ -15,11 +19,8 @@ class VendingMachine():
         if(isinstance(coin, Penny)):
             self._coin_return.append(coin)
         else:
-            self._coins_inserted.append(coin)
-            value = 0
-            for n in self._coins_inserted:
-                value += n.value()
-            self._display_string = self._display_format.format(value)
+            self._payment.accept(coin)
+            self._display_string = self._display_format.format(self._controller.approved_amount)
         
     
     def check_coin_return(self) -> Coins:
