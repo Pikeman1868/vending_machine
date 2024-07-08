@@ -1,7 +1,7 @@
 from vending_machine import vending_machine, coins
 
 def test_accept_coins():
-    vm = vending_machine.VendingMachine()
+    vm = vending_machine.VendingMachineBuilder().build()
     assert vm.read_display() == "Insert Coin"
     quarter = coins.Quarter()
     vm.insert_coin(quarter)

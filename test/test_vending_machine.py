@@ -1,13 +1,13 @@
 import pytest
 from vending_machine import coins
-from vending_machine.vending_machine import VendingMachine
+from vending_machine.vending_machine import VendingMachine, VendingMachineBuilder
 
 
 class TestVendingMachine():
 
     @pytest.fixture()
     def vm(self) -> VendingMachine:
-        return VendingMachine()
+        return VendingMachineBuilder().build()
 
     def test_when_awaiting_money_display_reads_insert_coin(self, vm:VendingMachine):
         assert vm.read_display() == "Insert Coin"
