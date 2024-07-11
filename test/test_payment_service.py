@@ -24,7 +24,5 @@ class TestCoinPaymentServie():
         service.accept(PENNY)
         assert len(service.coin_return) == 1
     
-    def test_when_given_quarter_return_true(self, service: CoinPaymentService):
-        assert service.is_quarter(QUARTER)
 
     

@@ -104,8 +104,9 @@ class TestPenny():
         assert PENNY != DIME
 
 class TestCoinValueMap():
-    def test_quarter_is_equal_to_25_cents(self):
-        assert COIN_VALUE_MAP[QUARTER] == pytest.approx(0.25)
+    @pytest.mark.parametrize("input, expected", [(QUARTER, 0.25), (DIME, 0.1), (NICKEL, 0.05), (PENNY, 0.01)])
+    def test_coin_has_correct_value(self, input:Coin, expected:float):
+        assert get_value_of_coin(input) == pytest.approx(expected)
 
 class TestCoins():
     @pytest.fixture

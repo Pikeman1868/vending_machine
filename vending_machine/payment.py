@@ -1,4 +1,4 @@
-from vending_machine.coins import Coin, Coins, PENNY, QUARTER
+from vending_machine.coins import Coin, Coins, PENNY, QUARTER, get_value_of_coin
 from vending_machine.controller import Controller
 
 class CoinPaymentService():
@@ -7,14 +7,13 @@ class CoinPaymentService():
         self._coin_return: Coins = Coins()
 
     def accept(self, coin:Coin) -> None:
-        if(coin == PENNY):
+        if not self._is_valid_coin(coin):
             self._coin_return.append(coin)
         else:
-            self.controller.approve_amount(coin.value)
+            self.controller.approve_amount(get_value_of_coin(coin))
 
-    def is_quarter(self, coin:Coin) -> bool:
-        qrt = QUARTER
-        return (coin.diameter == qrt.diameter) or (coin.weight == qrt.weight)
+    def _is_valid_coin(self, coin:Coin) -> bool:
+        return coin != PENNY
 
     @property
     def coin_return(self) -> Coin:
