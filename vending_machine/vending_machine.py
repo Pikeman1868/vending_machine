@@ -1,5 +1,5 @@
 from __future__ import annotations
-from . coins import Coin, Coins, Penny
+from . coins import Coin, Coins
 from . controller import Controller, CentralController 
 from . payment import CoinPaymentService
 

@@ -14,13 +14,13 @@ class TestVendingMachine():
 
     def test_when_receives_money_display_reports_money(self, vm:VendingMachine):
         assert vm.read_display() == "Insert Coin"
-        vm.insert_coin(coins.Quarter())
+        vm.insert_coin(coins.QUARTER)
         assert vm.read_display() == "$0.25"
 
     def test_when_penny_insert_place_in_coin_return(self, vm:VendingMachine):
-        vm.insert_coin(coins.Penny())
+        vm.insert_coin(coins.PENNY)
         assert len(vm.check_coin_return()) == 1
 
     def test_change_return_empty_when_valid_coin_is_inserted(self, vm: VendingMachine):
-        vm.insert_coin(coins.Quarter())
+        vm.insert_coin(coins.QUARTER)
         assert len(vm.check_coin_return()) == 0

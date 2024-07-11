@@ -1,39 +1,26 @@
-from abc import ABC, abstractmethod
+from dataclasses import dataclass
 from collections import UserList
 from typing import List
 
-class Coin(ABC):
-    @abstractmethod
-    def value(self) -> float:
-        ...
-    @abstractmethod
-    def name(self) -> str:
-        ...
+@dataclass(frozen=True)
+class Coin():
+    value:float
+    name: str
+    diameter:float
+    weight:float
 
-class Quarter(Coin):
-    def value(self) -> float:
-        return 0.25
-    
-    def name(self) -> str:
-        return "quarter"
-    
-class Dime(Coin):
-    def value(self) -> float:
-        return 0.10
-    def name(self) -> str:
-        return "dime"
-    
-class Nickel(Coin):
-    def value(self) -> float:
-        return 0.05
-    def name(self) -> str:
-        return "nickel"
+    # def __eq__(self, value: object) -> bool:
+    #     return (value.diameter == self.diameter) and (value.weight == self.weight)
 
-class Penny(Coin):
-    def value(self) -> float:
-        return 0.01
-    def name(self) -> str:
-        return "penny"
+QUARTER = Coin(0.25, "quarter", 0.955, 5.670)
+DIME = Coin(0.1, "dime", 0.705, 2.268)
+NICKEL = Coin(0.05, "nickel", 0.835, 5.00)
+PENNY = Coin(0.01, "penny", 0.750, 2.50)
+
+COIN_VALUE_MAP = {QUARTER: 0.25,
+                  DIME: 0.10,
+                  NICKEL: 0.05,
+                  PENNY: 0.01}
 
 class Coins(UserList):
 
